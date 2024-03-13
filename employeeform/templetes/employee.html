@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title></title>
+        <title>Employeesformdetails </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <style>
+       
+        label{
+            
+            font-weight: bold;
+        }
+     
+    </style>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="offset-md-4 col-md-4">
+                    <h1 class="text-center bg-info text-light mt-5">Please Enter Employeesformdetails!!!</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <label>Enter First Name</label>
+                        <input  type="text" name="fname"  class="form-control c1" >
+        
+                        <label>Enter Last Name</label>
+                        <input type="text" name="lname"  class="form-control c1" >
+        
+                        <label>Enter Email ID:</label>
+                        <input type="email" name="email" class="form-control c1" >
+        
+                        <label>Enter Mobile</label>
+                        <input type="number" name="mobile"  class="form-control c1" >
+        
+                        <label>Enter Qulification</label>
+                        <input type="text" name="qulification"  class="form-control c1" >
+        
+                        <label>Enter Branch</label >
+                        <input type="txt" name="brach" class="form-control c1" >
+
+                        <label>Enter Percentage</label >
+                        <input type="number" name="percentage" class="form-control c1" >
+                        
+                        <label>Enter Passed_out_year</label >
+                        <input type="text" name="year" class="form-control c1" >
+            
+                        <label>Enter Skills</label >
+                        <input type="text" name="skills" class="form-control c1" >
+                  
+                        <div class="text-center m-2">
+                            <input type="submit" name="Submit" class="btn-success btn font-weight-bold mr-3">
+
+                            <input type="reset" name="Cancel" class="btn-danger btn font-weight-bold ml-3">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
