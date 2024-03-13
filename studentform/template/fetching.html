@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title></title>
+        {% include 'cdn.html' %}
+    </head>
+    <body>
+        {% if student %}
+        <h1 class="text-center bg-info m-2 p-2 font-weight">Student Information </h1>
+        <table class="table table-bordered text-center">
+            <thead class="bg-success">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>College</th>
+                    <th>Qualification</th>
+                    <th>Branch</th>
+                    <th>Percentage</th>
+                    <th>Fee</th>
+
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+                {% for i in student %}
+                <tr>
+                    <td>{{ i.first_name }}</td>
+                    <td>{{ i.last_name }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.mobile }}</td>
+                    <td>{{ i.college }}</td>
+                    <td>{{ i.qualification }}</td>
+                    <td>{{ i.branch }}</td>
+                    <td>{{ i.percentage }}</td>
+                    <td>{{ i.fee }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        {% else %}
+        <h1 class="text-center">No Data Available</h1>
+        {% endif %}
+    </body>
+</html>
