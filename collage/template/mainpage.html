@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center">Welcome to Collage Student Details</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-right">
+                        <a  href="{% url 'AddNewDetails' %}" class="btn btn-success" >Add New Details</a>
+                    </div>
+         
+        {% if college1 %}
+        <h1 class="text-center bg-info m-2 p-2 font-weight">Student Information </h1>
+        <table class="table table-bordered text-center">
+            <thead class="bg-success">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>College</th>
+                    <th>Branch</th>
+                    <th>Percentage</th>
+                    <th>Location</th>
+                    <th>Fee</th>
+
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+                {% for i in college1 %}
+                <tr>
+                    <td>{{ i.first_name }}</td>
+                    <td>{{ i.last_name }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.mobile }}</td>
+                    <td>{{ i.college }}</td>
+                    <td>{{ i.branch }}</td>
+                    <td>{{ i.percentage }}</td>
+                    <td>{{ i.location }}</td>
+                    <td>{{ i.fee }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        {% else %}
+        <h1 class="text-center">Data is not Available</h1>
+        {% endif %}
+    </div>
+</div>
+</div>
+    </body>
+</html>
