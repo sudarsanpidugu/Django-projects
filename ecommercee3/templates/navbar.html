@@ -1,0 +1,116 @@
+{% load static %}
+<style media="screen">
+  .navbar{
+    background-color: #078fff9f;
+    margin: 0px;
+  }
+  #logo{
+    height: 40px;
+    width: 120px;
+  }
+  .search-bar {
+    width: 40%;
+    /* Adjust this value to set the desired width */
+    margin-left: 10%;
+  }
+  .nav-item{
+    font-weight: bold;
+  }
+  .nav-link{
+    color: white;
+  }
+  .profile-pic{
+   display: inline-block;
+   vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+   border-radius: 50%;
+}
+
+.profile-pic img{
+   width: 100%;
+   height: auto;
+   object-fit: cover;
+}
+
+
+</style>
+
+
+<nav class="navbar navbar-expand-lg fixed-top " style=" font-size: large;">
+  <div class="container-fluid">
+    <a class="navbar-brand active Logo  {% if request.resolver_match.url_name == 'home' %} active {% endif %}" href="{% url 'home' %}">
+      <img src="{% static 'image/ats2.JPG' %}" alt="" width="120" height="35">
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="search-bar">
+      <form action="{% url 'searchproduct' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+          <input type="search" required class="form-control" name="productsearch" id="searchproducts"
+            placeholder="Search Product" maxlength="50">
+          <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+        </div>
+      </form>   
+    </div>
+
+    <div class="collapse navbar-collapse ml-2" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %} active {% endif %} ml-2 mt-1"
+            href="{% url 'home' %}"> <i class="fa fa-home "></i> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'collections' %} active {% endif %} ml-2 mt-1"
+            href="{% url 'collections' %}"><i class="fa fa-solid fa-tags"></i></i>Collections</a>          
+            
+        </li>
+        <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'cart' %} active {% endif %} ml-2  mt-1" href="{% url 'cart' %}"> <i class="fa fa-shopping-cart"><b><sup><span  class="badge badge-danger" id="cart-count">{{ cart|length }}</span></b><sup></i> Cart</a> </li>
+
+        <li class="nav-item">
+          <a class="nav-link  {% if request.resolver_match.url_name == 'wishlist' %} active {% endif %} ml-2 mt-1" href="{% url 'wishlist' %}"><i class="fa fa-heart "></i>  Wishlist </a>
+        </li>
+
+        {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown ml-2">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <div class="profile-pic">
+              <img src="https://source.unsplash.com/250x250?girl" alt="Profile Picture">{{request.user}}
+           </div>
+          </a>
+          
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'myorders' %}">My Orders</a>
+            <a class="dropdown-item" href="{% url 'contact_us' %}">Contact US</a>
+
+            <div class="dropdown-divider"></div>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
+          </div>
+        </li>
+
+        {% else %}
+
+        <li class="nav-item mr-3 ml-2 mt-1">
+          <a class="nav-link" href="{% url 'loginpage' %}">Login</a>
+        </li>
+        <li class="nav-item mt-1">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+
+        {% endif %}
+
+      </ul>
+    </div>
+
+  </div>
+
+
+</nav>

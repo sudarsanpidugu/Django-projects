@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+
+  {% block content %}
+
+
+  <div class="container" style="margin-top: 80px; margin-bottom: 30px;">
+
+        <h2>Shop By Category</h2>
+        <hr>
+        <div class="row" >
+          {% for item in category %}
+          <div class="col-md-3" >
+              <div class="card mb-2" style="border-radius: 20px;" >
+                  <a href="{% url 'collectionsview' item.slug %}" class="text-decoration-none">
+                      <div class="card-body shadow">
+                          <h5 class='text-center'>{{ item.name }}</h5>
+                          <div class="category-image">
+                              {% if item.image %}
+                                  <img src="{{ item.image.url }}" alt="category image" width="210px" style="height: 260px; border-radius: 5px; padding: 5px; box-shadow: 0px 0px 5px rgb(90, 88, 88);">
+                              {% else %}
+                                  <p>No image available</p>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}

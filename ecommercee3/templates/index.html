@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  {% include 'cdnlines.html' %}
+  <title></title>
+</head>
+<style media="screen">
+  .nav {
+    text-align: center;
+  }
+</style>
+
+<body>
+  {% block content %}
+
+
+  {% include 'slider.html' %}
+  <div class="container" style="margin-bottom: 15px;">
+  
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="bg-light">Trending Products</h2>
+        <hr>
+
+        <div class="row  owl-carousel owl-theme">
+          {% for item in trending_products %}
+          <div class="product_data item">
+            <div class="card">
+              <div class="card-body text-center">
+                <a href="{% url 'productview' item.category.slug item.slug %}">
+                  <div class="category-image">
+                    {% if item.product_image %}
+                    <img src="{{ item.product_image.url }}" alt="Product image" class="w-80" style="height: 250px;">
+                    {% else %}
+                    <p>No image available</p>
+                    {% endif %}
+                  </div>
+                  <label style="color: black;">{{ item.description }}</label>
+                </a>
+                <span class="text-dark float-start">Price: Rs {{ item.selling_prices | stringformat:'d' }}</span>
+                <br>
+                <div class="row mt-2">
+                  <div class="col-md-6">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ item.id }}" class="prod_id">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}
+
+</body>
+
+</html>
+
+
+{% block scripts %}
+<script type="text/javascript">
+  $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+      0: {
+        items: 4
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 4
+      }
+    }
+  });
+</script>
+{% endblock scripts %}

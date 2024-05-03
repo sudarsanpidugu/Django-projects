@@ -1,0 +1,97 @@
+{% extends 'main.html' %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% block content %}
+
+    <div class="py-3 " style=background-color:#0af7b4>
+      <div class="container">
+        <a class = 'text-white' href="{% url 'home' %}">Home/</a>
+        <a class = 'text-white' href="{% url 'cart' %}">Cart</a>
+      </div>
+
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-shadow">
+            <div class="card-body cartdata">
+              {% if cart %}
+                  {% for item in cart %}
+                      <div class="row product_data">
+                        <div class="col-md-2 my-auto">
+                          <img src="{{ item.product.product_image.url }}" height = "70px" width = "70px" alt="Image here">
+
+                        </div>
+                        <div class="col-md-3 my-auto">
+                          <h6>{{ item.product.name }}</h6>
+
+                        </div>
+                        <div class="col-md-2 my-auto">
+                           <h6>Rs {{ item.product.selling_prices|stringformat:'d'}}</h6>
+
+                        </div>
+                        <div class="col-md-3 my-auto">
+                            <input type="hidden" class = "prod_id"  value="{{ item.product_id }}">
+                            {% csrf_token %}
+                            {% if item.product.quantity >= item.product_qty %}
+                                  <label for="Quantity">Quantity</label>
+                                  <div class="input-group text-center mb-3" style = "width:130px;">
+                                    <button class = "input-group-text changeQuantity decrement-btn">-</button>
+                                    <input type="text" name="quantity" class = "form-control qty-input text-center" value="">
+                                    <button class = "input-group-text changeQuantity increment-btn">+</button>
+
+                                  </div>
+              {% else %}
+                   <h6> Out Of Stock</h6>
+              {% endif %}
+                        </div>
+                        <div class="col-md-2 my-auto">
+                          <button class = "btn btn-outline-danger delete_cart_item"  ><i class = "fa fa-trash"></i>Remove</button>
+
+                        </div>
+
+                      </div>
+
+
+                  {% endfor %}
+                  <a href="{% url 'checkout' %}" class = "btn btn-outline-success float-end">Checkout</a>
+              {% else %}
+                 <h4> Your Cart Is Empty </h4>
+              {% endif %}
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+  <span id="cart-count">{{ cart|length }}</span> <!-- Display the initial count -->
+<script>
+  // Function to update the cart count
+  function updateCartCount() {
+      let count = {{ cart|length }};
+      document.getElementById("cart-count").textContent = count;
+  }
+
+  // Call the function when the page loads
+  updateCartCount();
+</script>
+
+</html>
+
+
+
+
+   {% endblock content %}

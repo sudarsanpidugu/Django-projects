@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  {% include 'cdnlines.html' %}
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'owl.theme.default.min.css' %}">
+  <title>Doc</title>
+</head>
+<style media="screen">
+  a {
+
+    text-decoration: none;
+
+  }
+
+  * {
+    font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif ;
+  }
+
+
+
+  footer {
+    background-color: rgba(0, 0, 0, 0.728);
+    color: white;
+    font-size: 16px;
+  }
+  footer a{
+    color: aliceblue;
+  }
+  .wrapper .icon{
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 22px;
+  display: inline-block;
+  align-items: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.98, -0.55, 0.265, 1.55);
+  color: #866060;
+  text-decoration: none;
+}
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  line-height: 1.5;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background-color: #3b5999;
+  color: #ffffff;
+}
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background-color: #46c1f6;
+  color: #ffffff;
+}
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background-color: #e1306c;
+  color: #ffffff;
+}
+.wrapper .telegram:hover,
+.wrapper .telegram:hover .tooltip,
+.wrapper .telegram:hover .tooltip::before {
+  background-color: #0039f5;
+  color: #ffffff;
+}
+.wrapper .WhatsApp:hover,
+.wrapper .WhatsApp:hover .tooltip,
+.wrapper .WhatsApp:hover .tooltip::before {
+  background-color: #00ff26;
+  color: #ffffff;
+}
+</style>
+
+<body>
+  {% include 'navbar.html' %}
+  {% block content %}
+
+  {% endblock %}
+  <footer class="container-fluid">
+    <a href="{% url 'home' %}" style="margin-left: 50%; font-size: large;"><u><b>BacktoHome</b>  </u></a>
+    
+    <div class="container pt-3 pb-3">
+      <div class="row">
+        <div class="offset-md-2 col-md-3">
+          <!-- customer_service.html -->
+          <h5>Services</h5>
+          <a href="{% url 'contactus'%}">Contact Us</a><br>
+          <a href="{% url 'faq'%}">FAQ</a><br>
+          <a href="{% url 'feedback'%}">Feedback & Suggestions</a><br>
+        </div>
+        <div class="col-md-3 ">
+          <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+          <h5>Connect with Us</h5>
+          <div class="wrapper">
+            <a href="https://www.facebook.com" class="icon facebook mt-2 ">
+              <div class="tooltip">Facebook</div>
+              <span><i class="fab fa-facebook-f"></i></span>
+            </a>
+            <a href="https://twitter.com/?lang=en-in" class="icon twitter ml-2 mt-2">
+              <div class="tooltip">Twitter</div>
+              <span><i class="fab fa-twitter"></i></span>
+            </a>
+            <a href="https://www.instagram.com/?hl=en" class="icon instagram ml-2 mt-2">
+              <div class="tooltip">Instagram</div>
+              <span><i class="fab fa-instagram"></i></span>
+            </a>
+            <a href="https://web.telegram.org" class="icon telegram ml-2 mt-2">
+              <div class="tooltip">Telegram</div>
+              <span><i class="fab fa-telegram"></i></span>
+            </a><br>  
+            <a href="https://wa.me/+918464002165?text=I'm%20inquiring%20about%20the%20apartment%20listing" class="whatsapp-chat">
+              <img src="{% static '/image/whatsapp.png' %}" alt="WhatsApp Logo" width="35" height="35" style="border-radius: 50%;margin-top: 10px;">
+            </a>
+          
+          </div>
+        </div>
+        <div class="col-md-3">
+          
+          <h5>Get to Know Us</h5>
+          <a href="{% url 'aboutus'%}" onclick="scrollToSection('aboutUs')"> About Us</a><br>
+          <a href="#ourStory" onclick="scrollToSection('ourStory')">Our Story</a><br>
+          <a href="#missionValues" onclick="scrollToSection('missionValues')">Mission & Values</a><br>
+          <a href="#careers" onclick="scrollToSection('careers')">Careers</a><br>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jquary -->
+  <script src="{% static '/js/jquery-3.7.1.min.js' %}"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  <script>
+    var availableTags = [];
+    $.ajax({
+      type: "GET",
+      url: "/product-list",
+
+      success: function (response) {
+        startAutocomplete(response);
+      }
+    });
+
+    function startAutocomplete(availableTags) {
+
+      $("#searchproducts").autocomplete({
+        source: availableTags
+      });
+
+    }
+
+    function scrollToSection(sectionId) {
+      var section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+  </script>
+  <script src="{% static 'js\custom.js' %}"></script>
+  <!-- start to tawk.to chat -->
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6614479ca0c6737bd129aed8/1hqvjffot';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+
+  <!-- alertify JS -->
+
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+  <script src="{% static '/js/owl.carousel.min.js' %}"></script>
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+  <script>
+    alertify.set('notifier', 'position', 'middle-center');
+
+    {% for msg in messages %}
+    alertify.success('{{ msg }}');
+    {% endfor %}
+
+  </script>
+
+  <script src="" charset="utf-8">
+    var availableTags = []
+    $.ajax({
+      type: "GET",
+      url: "/product-list",
+
+      success: function (response) {
+        startAutocomplete(response);
+      }
+    });
+
+
+
+    function startAutocomplete(availableTags) {
+
+      $("#searchproducts").autocomplete({
+        source: availableTags
+      });
+
+    }
+  </script>
+  {% block scripts %}
+
+
+  {% endblock scripts %}
+  {% comment %} Razorpay checkout {% endcomment %}
+
+  <script src="{% static '/js/checkout.js' %}"></script>
+</body>
+
+</html>

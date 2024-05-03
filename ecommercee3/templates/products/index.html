@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 100px; margin-bottom: 30px;">
+  <div class="row">
+    <div class="col-md-12">
+
+      <h1>{{category_name.name}}</h1>
+      <hr>
+      <div class="row">
+        {% for item in products %}
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body text-center">
+              <a href="{% url 'productview' item.category.slug item.slug %}">
+                <div class="category-image">
+                  <img src="{{ item.product_image.url }}" alt="Product image" class="w-100" style="height: 250px;">
+                </div>
+                <label>{{item.description}}</label>
+              </a><br>
+              <span class="text-danger float-start "><b>Price: Rs {{item.selling_prices |stringformat:'d'}}</b></span>
+              <br>
+              <div class="row mt-2">
+                <div class="col-md-6">
+                  {% csrf_token %}
+                  <input type="hidden" value="{{item.id}}" class="prod_id">
+                  
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

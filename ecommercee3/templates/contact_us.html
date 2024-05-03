@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{%  load static  %}
+{% block content %}
+
+<style>
+        /* Basic styling for demonstration purposes */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin : 90px auto;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .contact-form {
+            margin-top: 30px;
+        }
+   
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: white;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            height: 100px;
+        }
+        
+      
+        h1{
+            color: #fdfdfd;
+            background-color: rgb(195, 127, 255);
+            border-radius: 40px 1px;
+            font-weight: 500;
+        }
+    </style>
+    <img src="{}" alt="">
+
+<div class="container bg-dark">
+    <h1> ATS Contact Us</h1>
+
+    <form class="contact-form"  method="post">
+            {%  csrf_token  %}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        <div class="form-group">
+          <a href="{%  url 'wewill'   %}" class="btn btn-primary">SUBMIT</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+<!-- search_results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'navbar.html' %}
+    {% include 'cdnlines.html' %}
+    <title>Search Results</title>
+    <style>
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+        }
+        .product-list li {
+            width: calc(18% - 20px); /* Decrease the width */
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        .product-list img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Search Results</h1>
+
+    {% if all_products %}
+        <ul class="product-list">
+            {% for product in all_products %}
+                <li>
+                    <img src="{{ product.product_image.url }}" alt="{{ product.name }}">
+                    <h2>{{ product.name }}</h2>
+
+                    <p>Price: ${{ product.selling_prices | stringformat:'d' }}</p>
+                    <!-- Add more details as needed -->
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No mobile products found.</p>
+    {% endif %}
+</body>
+</html>
